@@ -1,0 +1,18 @@
+/* global.css */
+/* body {
+  user-select: none;
+  background-color: #E9ECEF;
+} */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  list-style:none;
+  text-decoration:none;
+  transition:all .1s;
+  user-select:none;
+}
+body{
+  font-family: 'Roboto', sans-serif;
+  overflow-x:hidden;
+}
