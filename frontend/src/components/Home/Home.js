@@ -4,9 +4,9 @@ import HowItWorks from '../HowItWorks/HowItWorks';
 import Products from '../Products/Products';
 import Stores from "../Stores/Stores";
 import Footer from "../Footer/Footer";
-const Home = () => {
+const Home = ({user}) => {
     return (<>
-         <Header/>
+         <Header user={user}/>
          <HowItWorks/>
          <Products/>
          <Stores/>

@@ -1,0 +1,61 @@
+.translationcontainer{
+  height: 200px;
+  display: block;
+}
+.translationbox{
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50px -50px;
+  background-color: rgba(0, 52, 82,1);
+  color: black;
+  z-index: -1;
+  text-align: center;
+  border-radius: 50%;
+  opacity: 1;
+}
+.translationbox1{
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 43%;
+  top: 50%;
+  translate: -50px -50px;
+  background-color: rgba(0, 52, 82,1);
+  color: black;
+  z-index: -1;
+  text-align: center;
+  border-radius: 50%;
+  opacity: 1;
+}
+.translationbox2{
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 57%;
+  top: 50%;
+  translate: -50px -50px;
+  background-color: rgba(0, 52, 82,1);
+  color: black;
+  z-index: -1;
+  text-align: center;
+  border-radius: 50%;
+  opacity: 1;
+}
+.translationbox, .translationbox1, .translationbox2{
+  animation-name: transitionkey;
+  animation-duration: 2s;
+  animation-fill-mode:forwards;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: reverse;
+}
+@keyframes transitionkey{
+  0% {transform: translate(0px,0px); opacity: 1;}
+  25% {transform: translate(150px,0px);opacity: 0.5;}
+  50% {transform: translate(0px,0px);opacity: 1;}
+  75% {transform: translate(-150px,0px);opacity: 0.5;} 
+  100% {transform: translate(0px,0px);opacity: 1;}
+}

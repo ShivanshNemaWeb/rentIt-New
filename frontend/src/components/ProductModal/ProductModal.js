@@ -3,13 +3,35 @@ import styles from './ProductModal.module.css';
 import lightSlider from 'lightslider/dist/css/lightslider.min.css';
 import $ from 'jquery';
 import React, { useEffect, useRef } from 'react';
+import {useLocation} from 'react-router-dom'
+import Navbar from '../Navbar/Navbar';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import {dislike, like} from '../../actions/likeActions'
+import {useDispatch,useSelector} from 'react-redux'
+import { useHistory } from 'react-router-dom';
 const ProductModal = ({isModalOpen,setModalOpen}) => {
-    
+    const location = useLocation();
+    const {product} = location.state;
+    const history = useHistory();
+    const dispatch = useDispatch();
+   console.log(product)
      const handleModalClose = () =>{
         setModalOpen(false);
      }
+
+     const handleLikeClick = (e,productId) => {
+        e.preventDefault();
+          // Make API call
+           dispatch(like(productId));
+            }
+      
+    
+      const handleDislikeClick =  (e,productId) => {
+        e.preventDefault();
+        dispatch(dislike(productId));
+      }
     return (<>
-         
+         <Navbar/>
                 <div className='container'>
                      <div className={styles.modalContent}>
                        <div className={styles.productDetails}>
@@ -19,7 +41,7 @@ const ProductModal = ({isModalOpen,setModalOpen}) => {
         <div className = {styles["product-imgs"]}>
       <div className = {styles["img-display"]}>
         <div className = {styles["img-showcase"]} >
-          <img src = "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_1.jpg" alt = ""/>
+          <img src = {product.images.img1} alt = ""/>
           <img src = "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg" alt = ""/>
           <img src = "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg" alt = ""/>
           <img src = "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg" alt = ""/>
@@ -28,22 +50,22 @@ const ProductModal = ({isModalOpen,setModalOpen}) => {
       <div className = {styles["img-select"]}>
         <div className = {styles["img-item"]}>
           <a href="google" data-id = "1">
-            <img src = "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_1.jpg" alt = ""/>
+            <img src ={product.images.img2} alt = ""/>
           </a>
         </div>
         <div className = {styles["img-item"]}>
           <a href="google" data-id = "2">
-            <img src = "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg" alt = ""/>
+            <img src ={product.images.img3} alt = ""/>
           </a>
         </div>
         <div className = {styles["img-item"]}>
           <a   href="google"data-id = "3">
-            <img src = "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg" alt = ""/>
+            <img src ={product.images.img4} alt = ""/>
           </a>
         </div>
         <div className = {styles["img-item"]}>
           <a href="google" data-id = "4">
-            <img src = "https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg" alt = ""/>
+            <img src ={product.images.img5} alt = ""/>
           </a>
         </div>
       </div>
@@ -82,45 +104,31 @@ const ProductModal = ({isModalOpen,setModalOpen}) => {
         <div className="col-md-7">
             <div className={styles["card"]}>
                 <div className="d-flex flex-row align-items-center">
-                    <div className={styles["p-ratings"]}> <i className='fa fa-heart' style={{color:"red"}}></i> </div> <span className="ml-1"> 400 Likes</span>
+                    <div className={styles["p-ratings"]}> <i className='fa fa-heart' style={{color:"red"}}></i> </div> <span className="ml-1"> {product.likes.likesCount} Likes</span>
                 </div>
-                <div className={styles["about"]}> <span className="font-weight-bold">Title </span>
-                    <h4 className="font-weight-bold">$3,444</h4>
+                <div className={styles["about"]}> <span className="font-weight-bold">{product.data.title} </span>
+                    <h4 className="font-weight-bold">&#8377; {product.data.price?(product.data.price):(product.data.data.price)}</h4>
                 </div>
                 <div className={styles["buttons"]}> <button className={`btn btn-outline-warning btn-long ${styles["cart"]}`}>Add to Cart</button> 
                 <button className={`btn btn-warning btn-long ${styles["buy"]}`}>Buy it Now</button> 
                 <button className={`btn btn-light${styles["wishlist"]}`}> 
-                <i className="fa fa-heart" style={{color:"rgba(0, 52, 82,1)"}}></i> 
-                </button> </div>
+               </button> </div>
                 <hr/>
                 <div className={styles["product-description"]}>
-                    <div><span className="font-weight-bold">Color:</span><span> Blue</span></div>
+                    <div><span className="font-weight-bold">Color:</span><span>{product.data.color?(product.data.color):(product.data.data.color)}</span></div>
                    
-                    <div className="d-flex flex-row align-items-center"> <i className="fa fa-calendar-check-o"></i> <span className="ml-1">Delivery from sweden, 15-45 days</span> </div>
                     <div className="mt-5"> <span className="font-weight-bold"><h4>Description</h4></span>
-                        <p>The minimalist collaboration features chairs, 
-                            lightening, Shelves, Sofas, Desks and various
-                             home accessories, all offering form and function 
-                             at the same point.We use high-strength clamps and 
-                             joinery techniques specially designed for engineered
-                              wood beds. Ergo, no irksome creaks - and you can sleep l
-                              ike a baby, well into adulthood!</p>
-                        <div className={styles["bullets"]}>
-                            <div className="d-flex align-items-center"> <span className={styles["dot"]}></span> <span className={styles["bullet-text"]}>Best in Quality</span> </div>
-                            <div className="d-flex align-items-center"> <span className={styles["dot"]}></span> <span className={styles["bullet-text"]}>Anti-creak joinery</span> </div>
-                            <div className="d-flex align-items-center"> <span className={styles["dot"]}></span> <span className={styles["bullet-text"]}>Sturdy laminate surfaces</span> </div>
-                            <div className="d-flex align-items-center"> <span className={styles["dot"]}></span> <span className={styles["bullet-text"]}>Relocation friendly design</span> </div>
-                            <div className="d-flex align-items-center"> <span className={styles["dot"]}></span> <span className={styles["bullet-text"]}>High gloss, high style</span> </div>
-                            <div className="d-flex align-items-center"> <span className={styles["dot"]}></span> <span className={styles["bullet-text"]}>Easy-access hydraulic storage</span> </div>
-                        </div>
+                        <p>{product.data.descreption?(product.data.descreption):(product.data.data.descreption)}</p>
+                       
                     </div>
                     <div className="mt-5"> <span className="font-weight-bold">Store</span> </div>
-                    <div className="d-flex flex-row align-items-center"> 
-                    <img src="https://i.imgur.com/N2fYgvD.png" className={`rounded-circle ${styles["store-image"]}`} alt=''/>
+                   <Link to={{pathname:"/storeProfile",state:{storeId:product.data.storeId}}}> <div className="d-flex flex-row align-items-center"> 
+                    <img src={product.store.profileImgUrl?(product.store.profileImgUrl):(product.images.storeProfile)} className={`rounded-circle ${styles["store-image"]}`} alt=''/>
                         <div className={`d-flex flex-column ml-1 ${styles["comment-profile"]}`}>
-                            <div className={`${styles["comment-ratings"]}`}> </div> <span className="username">Rare Boutique</span> <small className={styles["username"]}>25K Followers</small>
+                            <div className={`${styles["comment-ratings"]}`}> </div> <span className="username">{product.store.storeName}</span> <small className={styles["username"]}>{product.store.followers} Followers</small>
                         </div>
                     </div>
+                    </Link>
                 </div>
             </div>
             <div className= {`${styles["card"]} mt-5 p-3`}> <span>Similar items:</span>

@@ -1,0 +1,119 @@
+.main{
+}
+.cover img{
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  z-index: 1;
+}
+.cover{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+width: 100%;
+height:250px;
+margin-top: 20px;
+border-radius: 20px;
+background-color:rgba(0, 0, 0, 0.528);
+z-index: 1;
+/* opacity: 0.5; */
+}
+.avatar{
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  margin: auto;
+  margin-top: -50px;
+  /* border: 1px solid gray; */
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  position: relative;
+}
+.avatar img{
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 100;
+}
+h4{
+  color: rgba(0, 52, 82,1);
+}
+.form{
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 20px;
+  /* box-shadow:0px 3px 10px rgba(0, 0, 0, 0.3) ; */
+}
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ input {
+  /* border-bottom: 2px solid black !important; */
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3) !important;
+}
+.heading {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-size: 2.5em;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  /* margin-bottom: 5%; */
+  color: rgba(0, 52, 82,1);
+}
+
+.heading:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  transform: translate(-50%, 0);
+  width: 100px;
+  height: 1px;
+  background: #0093E7;
+}
+.rootInner{
+  /* margin-top: 20px; */
+  margin-bottom: 20px;
+  padding: 50px;
+}
+.root{
+  background:url('https://media.architecturaldigest.in/wp-content/uploads/2017/05/notsoseriousdecor.jpg');
+  margin-top: 0;
+  
+}
+
+.modal Modal{
+  background-color: white;
+}
+.notificationModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  width: 50%;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 16px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notificationModal .modalContent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}

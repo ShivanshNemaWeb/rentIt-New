@@ -16,7 +16,6 @@ const HowItWorks = () => {
     <section id="steps">
         <div className="text-center mb-5">
             <h2 className="font-weight-bold display-4 " style={{color:"#9B5DE5"}}>How It <span style={{color:"rgba(0, 52, 82,1)"}}>Works?</span></h2>
-            <span style={{color:"#9B5DE5"}}>If You are a Designer/Provider !</span>
         </div>
         <div className="row">
             <div className="col-md-4">
@@ -71,11 +70,10 @@ const HowItWorks = () => {
             </div>
         </div>
     </section>
-    <section id="steps">
+    <section id="steps" className='my-5'>
         <div className="text-center mb-5">
-            <span style={{color:"#9B5DE5"}} className='font-weight-bol'>If Your Are a Renter  !</span>
         </div>
-        <div className="row">
+        <div className="row mb-5 mt-5 my-5">
             <div className="col-md-4">
                 <div className="bg-light position-relative px-3 my-5" style={{height:"100%"}}>
                     <div className="font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white"

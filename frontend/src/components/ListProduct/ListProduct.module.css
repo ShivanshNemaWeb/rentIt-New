@@ -1,0 +1,162 @@
+.heading {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 2.5em;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5%;
+    color: white;
+}
+
+.heading:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    transform: translate(-50%, 0);
+    width: 100px;
+    height: 1px;
+    background: #0093E7;
+}
+
+    .cardImageContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100px;
+        width: 100px;
+        padding-top: 2px;
+        padding-bottom: 5px;
+        padding-left: 1px;
+        padding-right: 1px;
+        border: 1.66px dotted #8A92A6;
+        position: relative;
+      }
+      .uploadButton {
+        padding: 8px 16px;
+        margin-right: 10px;
+        background-color: rgba(0, 52, 82,1);
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 120px;
+        height: 35px;
+        margin-right: 5px;
+        cursor: pointer;
+        z-index: 998;
+      }
+      .uploadIcon {
+        font-size: 14px;
+        color: #ffffff;
+      }
+
+      .uploadText {
+        font-family: Poppins;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 30px;
+        letter-spacing: 0em;
+        text-align: center;
+        margin-left: 5px;
+        color: #ffffff;
+      }
+      .firstCard .cardImageContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 400px;
+        width: 430px;
+        padding-top: 2px;
+        padding-bottom: 5px;
+        padding-left: 1px;
+        padding-right: 1px;
+        border: 1.66px dotted #8A92A6;
+        position: relative;
+      }
+      .photos{
+        display: flex;
+        flex-direction: column;
+      }
+      .otherCards{
+        display: flex;
+        flex-direction: row;
+        margin-top: 2%;
+      }
+      .otherCards .uploadButton {
+       
+        background-color: rgba(0, 52, 82,1);
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 50px;
+        height: 20px;
+        /* margin-right: 5px; */
+        cursor: pointer;
+        z-index: 998;
+      }
+      .otherCards .cardImageContainer .uploadButton{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .otherCards .cardImageContainer{
+        margin: 5px;
+      }
+      .main{
+        display: flex;
+        /* border: 1px solid gray; */
+         border-radius: 20px;
+         padding: 20px;
+         box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+         background-color: white;
+      }
+      
+    .photos{
+        margin-right: 20px;
+       
+    }
+    .form{
+       
+    }
+    .form form{
+        margin-left: 20px;
+    }
+    .root{
+        background:url('https://media.architecturaldigest.in/wp-content/uploads/2017/05/notsoseriousdecor.jpg');
+    }
+
+    input{
+      display: block;
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 1.8rem 1.6rem !important;
+      background: white;
+      border: none !important;
+      border-bottom: 2px solid gray !important;
+      font-family: sans-serif;
+      font-weight: 600;
+      color: rgb(78, 78, 78);
+      -moz-border-radius: 0px !important;
+      -webkit-border-radius: 0px !important;
+      border-radius: 0px !important;
+      -moz-box-shadow: none !important;
+      -webkit-box-shadow: none !important;
+      box-shadow: none !important;
+      -o-transition: all .0s;
+      -moz-transition: all .0s;
+      -webkit-transition: all .0s;
+      -ms-transition: all .0s;
+      transition: all .0s;
+}
+.img{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}

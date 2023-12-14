@@ -1,48 +1,37 @@
 import React from "react";
 import styles from "./Header.module.css";
-import logo from '../../assets/logo.png';
-
+import Navbar from '../Navbar/Navbar';
+import { Link } from "react-router-dom";
+import { useDispatch,useSelector } from 'react-redux';
+import { fetchUser } from '../../actions/userActions';
+import { useEffect } from "react";
 const Header = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
+  const userId = localStorage.getItem('userId');
+
+  useEffect(()=>{
+     dispatch(fetchUser(userId));
+  },[dispatch])
+
     return (<>
 <header>
-  
-  <nav>
-    
-    <img src={logo} className={styles.logo} alt="nothing"/>
-    
-    <ul className={styles.menu_bar_side}>
-      <li>Featured</li>
-      <li>Wedding</li>
-      <li>Party</li>
-      <li>Your Followed</li>
-      <li>Traditional</li>
-      <li>Stores</li>
-    </ul>
-    
-     <ul className={styles.menu_bar}>
-      <li>about</li>
-      <li>contect us</li>
-      <li><i className='fas fa-bell'></i></li>
-      <li><i className='fas fa-shopping-cart'></i></li>
-      <li><i className='fas fa-user-alt'></i></li>
-    </ul>
-    
-    {/* <i className="fa fa-bars"></i> */}
-  </nav>
-
-  
+   <Navbar/>
  <div className={styles.content}>
    
-  <h2 className={styles.heading}>
+  <h2 className={styles.heading} style={{color:"white"}}>
   The Ultimate Fashion Swap: Rent It or List It
   </h2>
   
-  <h4>
-    25% Off On All Products
-  </h4>
   
-  <button className={styles.shopNow}>
-    Create Your Store
+  <button className={styles.shopNow} >
+    {
+     user!=null && user.hasStore?(<>
+      <Link to='/myStore' style={{color:"white"}}>Visit your store</Link>
+      </>):(<>
+      <Link to='/createStore' style={{color:"white"}}>Create your Store</Link>
+      </>)
+    }
   </button>
   <button className={styles.findMore}>
     Shop Now

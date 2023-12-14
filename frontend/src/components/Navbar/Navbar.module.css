@@ -1,0 +1,62 @@
+
+ nav{
+    background:rgba(0, 52, 82,1);
+    color:var(--white);
+    display:flex;
+    position:relative;
+    padding:25px 30px;
+    
+  }
+  
+   nav .fa-bars,
+   nav .fa-remove{
+    display:none;
+  }
+  
+   nav img{
+    width:120px;
+  }
+  
+   nav ul{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    height:100%;
+    text-transform:uppercase;
+  }
+  
+   nav ul li{
+    cursor:pointer;
+  }
+  
+   nav ul li:hover{
+    color:#008ED1;
+  }
+  
+  
+   nav ul:nth-child(2){
+    height:auto;
+  }
+  
+  
+   nav ul:nth-child(3){
+    position:absolute;
+    top:0%;
+    right:30px;
+    font-weight:100;
+  }
+  .user h6{
+    color: white;
+    margin-right: 50x;
+  }
+  .user{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  
+  
