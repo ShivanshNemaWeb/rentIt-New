@@ -7,10 +7,10 @@ import Footer from "../Footer/Footer";
 const Home = ({user}) => {
     return (<>
          <Header user={user}/>
-         <HowItWorks/>
+         <HowItWorks id="howItWorks"/>
          <Products/>
-         <Stores/>
-         <Footer/>
+         <Stores id="stores"/>
+         <Footer id="footer"/>
     </>)
 }
 export default Home;

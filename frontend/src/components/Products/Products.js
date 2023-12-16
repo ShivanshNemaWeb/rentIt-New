@@ -6,11 +6,11 @@ import YouFollowed from './YouFollowed/YouFollowed';
 import Traditional from "./Traditional/Traditional";
 const Products = () => {
     return(<>
-        <Featured/>
+        {/* <Featured/> */}
         <Wedding/>
         <Party/>
          <Traditional/> 
-         <YouFollowed/>
+         {/* <YouFollowed/> */}
     </>);
 }
 export default Products;

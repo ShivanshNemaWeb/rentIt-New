@@ -115,26 +115,24 @@ exports.getStore = async (req, res) => {
             likesCount
           },
         };
-        // return {
-        //   data: product,
-        //   images: {
-        //     img1,
-        //     img2,
-        //     img3,
-        //     img4,
-        //     img5,
-        //   },
-        // };
       })
     );
 
-    // Include image URLs and products in the response
+     // Get the number of followers for the store
+     const followsDoc = await firestore.collection('follows').doc(storeId.toString()).get();
+     const followersCount = followsDoc.exists ? Object.keys(followsDoc.data()?.followers || {}).length : 0;
+ 
+     // Check if the user follows the store
+     const isFollowing = userId ? followsDoc.exists && followsDoc.data()?.followers.hasOwnProperty(userId) : false;
+ 
     return res.status(200).send({
       data: {
         ...store.toObject(), // Convert Mongoose document to plain JavaScript object
         coverImgUrl,
         profileImgUrl,
         products: productsWithImages,
+        followersCount,
+        isFollowing
       },
     });
   } catch (error) {
@@ -193,20 +191,33 @@ catch(error){
 
 //Get All Stores
 exports.getAllStores = async (req,res) => {
+  let {userId} = req.query;
   try{
     const stores = await Store.find();
+    if (!userId) {
+      userId = "123456";
+    }
     // Iterate through each product to fetch images
     const storeWithImages = await Promise.all(
       stores.map(async (store) => {
         // Fetch image URLs for each store
         const storeProfile = await getImageUrl(`${store._id}/profile-img.jpg`)
         const storeCover = await getImageUrl(`${store._id}/cover-img.jpg`)
+         // Get the number of followers for the store
+    const followsDoc = await firestore.collection('follows').doc(store._id.toString()).get();
+    const followersCount = followsDoc.exists ? Object.keys(followsDoc.data()?.followers || {}).length : 0;
+
+    // Check if the user follows the store
+    const isFollowing = userId ? followsDoc.exists && followsDoc.data()?.followers.hasOwnProperty(userId) : false;
+
         return {
           data: store,
           images: {
             storeProfile,
             storeCover
           },
+          followersCount:followersCount,
+          isFollowing : isFollowing
         };
       })
     )
@@ -218,91 +229,6 @@ exports.getAllStores = async (req,res) => {
 }
 
 //Get Store By Id
-// exports.getStoreById = async (req,res) => {
-//   const storeId = req.query.storeId;
-//   let userId = req.query.userId;
-//   console.log(userId);
-//   try {
-//     const store = await Store.findById(storeId);
-
-//     if (!store) {
-//       return res.status(404).send({ message: "Store not found" });
-//     }
-
-//     // Fetch cover-img and profile-img from S3
-//     // const storeId = store._id;
-//     const coverImgKey = `${storeId}/cover-img.jpg`; // Adjust the file extension if needed
-//     const profileImgKey = `${storeId}/profile-img.jpg`; // Adjust the file extension if needed
-
-//     const coverImgUrl = await getImageUrl(coverImgKey);
-//     const profileImgUrl = await getImageUrl(profileImgKey);
-
-//     // Fetch all products for the given storeId
-//     const products = await Product.find({ storeId, isSold: false });
-
-//     // Iterate through each product to fetch images
-//     const productsWithImages = await Promise.all(
-//       products.map(async (product) => {
-//         // Fetch image URLs for each product
-//         const img1 = await getImageUrl(`${storeId}/${product._id}/first-img.jpg`);
-//         const img2 = await getImageUrl(`${storeId}/${product._id}/second-img.jpg`);
-//         const img3 = await getImageUrl(`${storeId}/${product._id}/thired-img.jpg`);
-//         const img4 = await getImageUrl(`${storeId}/${product._id}/fourth-img.jpg`);
-//         const img5 = await getImageUrl(`${storeId}/${product._id}/fifth-img.jpg`);
-
-//         // return {
-//         //   data: product,
-//         //   images: {
-//         //     img1,
-//         //     img2,
-//         //     img3,
-//         //     img4,
-//         //     img5,
-//         //   },
-//         // };
-//         if(!userId){
-//           userId ="123456";
-//         }
-//         const likesSnapshot = await firestore.collection('likes').doc(product._id.toString()).get();
-//         const userLiked = likesSnapshot.exists && likesSnapshot.data().hasOwnProperty(userId) && likesSnapshot.data()[userId] === true;
-
-//         // Get the number of likes for the product
-//         const likesCount = likesSnapshot.exists ? Object.keys(likesSnapshot.data()).length : 0;
-
-//         return {
-//           data: product,
-//           images: {
-//             img1,
-//             img2,
-//             img3,
-//             img4,
-//             img5,
-//           },
-//           likes: {
-//             userLiked,
-//             likesCount
-//           },
-//         };
-//       })
-//     );
-
-//     // Include image URLs and products in the response
-//     return res.status(200).send({
-//       data: {
-//         ...store.toObject(), // Convert Mongoose document to plain JavaScript object
-//         coverImgUrl,
-//         profileImgUrl,
-//         products: productsWithImages,
-//       },
-//     });
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(500).send({ message: "Something went wrong" });
-//   }
-// }
-
-
-// Get Store By Id
 exports.getStoreById = async (req, res) => {
   const storeId = req.query.storeId;
   let userId = req.query.userId;

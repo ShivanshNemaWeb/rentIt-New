@@ -10,7 +10,6 @@ import {Modal,Button} from '@material-ui/core';
 import Loader from '../Loader/Loader';
 import {getStore} from '../../actions/storeActions';
 import MyProducts from "../MyProducts/MyProducts";
-
 const MyStore = () => {
   
   const [headTab,setHeadTab] = useState("Work");
@@ -133,14 +132,10 @@ const MyStore = () => {
                        </b> Products <i className="fa fa-tshirt"></i></li>
                      <li><b>
                        {
-                       storeDetails.followers ? (<>{storeDetails.followers}</>):(<>0</>)
+                       storeDetails.followersCount ? (<>{storeDetails.followersCount}</>):(<>0</>)
                        }
                        </b> Followers <i className="fa fa-users"></i></li>
-                     <li><b>
-                       {
-                       storeDetails.likes ? (<>{storeDetails.likes}</>):(<>0</>)
-                       }
-                       </b> Likes <i className="fa fa-heart"></i></li>
+                    
                    </ul>
                    <hr/>
                  </div>
@@ -150,7 +145,7 @@ const MyStore = () => {
                </div>
                  </>):(<>
                  {
-                   headTab==="Testimonial"?(<><Testimonial/></>):(<>
+                   headTab==="Testimonial"?(<><Testimonial storeId={storeDetails._id}/></>):(<>
                    <StoreSettings storeDetails={storeDetails}/>
                    </>)
                  }

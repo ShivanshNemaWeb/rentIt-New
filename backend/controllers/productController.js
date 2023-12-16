@@ -308,3 +308,62 @@ exports.getTraditionalProducts = async (req,res) => {
     return res.status(401).send({ error: error.message });
   }
 }
+
+// API to get products from stores followed by the user
+exports.getFollowedProducts = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    // Fetch all stores from the database
+    const allStores = await Store.find();
+
+    // Fetch stores followed by the user from Firebase
+    const userFollowedStoresDoc = await firestore.collection('follows').doc(userId).get();
+    const userFollowedStores = userFollowedStoresDoc.exists ? userFollowedStoresDoc.data().followingStores || {} : {};
+
+    // Filter stores that the user follows
+    const storesUserFollows = allStores.filter((store) => userFollowedStores[store._id.toString()]);
+
+    // Fetch products from the stores the user follows
+    const productsFromFollowedStores = await Promise.all(
+      storesUserFollows.map(async (store) => {
+        const products = await Product.find({ storeId: store._id, isSold: false });
+
+        // Include additional details for each product
+        const productsWithDetails = await Promise.all(
+          products.map(async (product) => {
+            // Fetch image URLs for each product
+            const img1 = await getImageUrl(`${store._id}/${product._id}/first-img.jpg`);
+            const img2 = await getImageUrl(`${store._id}/${product._id}/second-img.jpg`);
+            const img3 = await getImageUrl(`${store._id}/${product._id}/thired-img.jpg`);
+            const img4 = await getImageUrl(`${store._id}/${product._id}/fourth-img.jpg`);
+            const img5 = await getImageUrl(`${store._id}/${product._id}/fifth-img.jpg`);
+            const storeProfile = await getImageUrl(`${store._id}/profile-img.jpg`);
+
+            return {
+              data: product,
+              images: {
+                img1,
+                img2,
+                img3,
+                img4,
+                img5,
+                storeProfile,
+              },
+              store: store,
+            };
+          })
+        );
+
+        return productsWithDetails;
+      })
+    );
+
+    // Flatten the array of products from different stores
+    const flattenedProducts = productsFromFollowedStores.flat();
+
+    return res.status(200).send(flattenedProducts);
+  } catch (error) {
+    return res.status(401).send({ error: error.message });
+  }
+};

@@ -216,6 +216,9 @@ const handleUnfollowClick =  (e,storeId) => {
                   {
                     tabs==="Wedding"?(<>
                     {
+                      weddingProducts.length===0?(<><h5 className="text-center">Nothing To Show</h5></>):(<></>)
+                    }
+                    {
                       weddingProducts&&(<>
                       {
                         weddingProducts.map((data)=>{
@@ -276,6 +279,9 @@ const handleUnfollowClick =  (e,storeId) => {
                     </>):(<>
                     {
                       tabs==="Party"?(<>
+                      {
+                      partyProducts.length===0?(<><h5 className="text-center">Nothing To Show</h5></>):(<></>)
+                    }
                        {
                       partyProducts&&(<>
                       {
@@ -336,6 +342,9 @@ const handleUnfollowClick =  (e,storeId) => {
                       </>):(<>
                       {
                         tabs==="Traditional"?(<>
+                         {
+                      traditionalProducts.length===0?(<><h5 className="text-center">Nothing To Show</h5></>):(<></>)
+                    }
                          {
                       traditionalProducts&&(<>
                       {
@@ -417,11 +426,7 @@ const handleUnfollowClick =  (e,storeId) => {
                        storeDetails.followersCount ? (<>{storeDetails.followersCount}</>):(<>0</>)
                        }
                        </b> Followers <i className="fa fa-users"></i></li>
-                     <li><b>
-                       {
-                       storeDetails.likes ? (<>{storeDetails.likes}</>):(<>0</>)
-                       }
-                       </b> Likes <i className="fa fa-heart"></i></li>
+                     
                 </ul>
                 <hr/>
               </div>
@@ -430,7 +435,7 @@ const handleUnfollowClick =  (e,storeId) => {
             </div>
             </div>
               </>):(<>
-              <Testimonial/>
+              <Testimonial storeId={storeId}/>
               </>)
             }
            

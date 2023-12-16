@@ -6,7 +6,7 @@ const Footer = () =>{
     <footer>
   
   <div class={styles.offerInfo}>
-    SALE UP TO 70% OFF FOR ALL CLOTHES & FASHION ITEMS, ON ALL BRANDS.
+    Rent your Fession Now !!
   </div>  
   
   <div class={styles.footerInfo}>
@@ -18,13 +18,14 @@ const Footer = () =>{
     </div>
     <div class={styles.container}>
   
-      <ul>
-        <li>Featured</li>
+      <ul style={{display:"flex", flexDirection:"column", justifyContent:"center"}}>
         <li>Wedding</li>
         <li>Party</li>
-        <li>Your Followed</li>
         <li>Traditional</li>
         <li>Stores</li>
+        <li>About Us</li>
+        <li>Contect</li>
+
       </ul>
     </div>
     

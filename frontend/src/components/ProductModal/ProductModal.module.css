@@ -318,3 +318,25 @@ label.radio input:checked+span::before {
     justify-content: center;
     align-items: center;
 }
+.notificationModal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    width: 50%;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 16px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .notificationModal .modalContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  
+  }

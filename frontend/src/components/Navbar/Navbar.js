@@ -18,21 +18,19 @@ const Navbar = () => {
 
     return(<>
      <nav>
-    
+    <Link to='/'>
     <img src={logo} className={styles.logo} alt="nothing"/>
-    
+    </Link>
     <ul className={styles.menu_bar_side}>
-      <li>Featured</li>
       <li>Wedding</li>
       <li>Party</li>
-      <li>Your Followed</li>
       <li>Traditional</li>
-      <li>Stores</li>
+     <li>Stores</li>
+     <li>about</li>
+      <li>contect us</li>
     </ul>
     
-     <ul className={styles.menu_bar}>
-      <li>about</li>
-      <li>contect us</li>
+     <ul className={styles.menu_bar} >
       <li><i className='fas fa-bell'></i></li>
       <Link to="/cart" style={{color:"white"}}><li><i className='fas fa-shopping-cart'></i></li></Link>
       {

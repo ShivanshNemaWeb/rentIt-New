@@ -9,6 +9,7 @@ import {
   Button
 } from '@material-ui/core';
 import Loader from '../Loader/Loader';
+import Navbar from '../Navbar/Navbar';
  const Register =()=>{
   const history = useHistory();
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const loading = useSelector((state)=>state.register.loading);
     </Modal>
       </>):(<></>)
     }
+    <Navbar/>
  <div class="container mt-3">
   <form>
     <div class="row jumbotron box8">

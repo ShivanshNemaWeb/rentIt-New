@@ -27,5 +27,8 @@ router.get('/getPartyProducts/:userId',productController.getPartyProducts);
 //Get Traditional Products
 router.get('/getTraditionalProducts/:userId',productController.getTraditionalProducts);
 
+//Get followed store products 
+router.get('/getFollowedProducts/:userId',productController.getFollowedProducts);
+
 
 module.exports = router;

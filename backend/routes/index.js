@@ -8,6 +8,7 @@ const productRoutes = require('./product');
 const cartRoutes = require('./cart');
 const likeRoutes = require('./like');
 const followRoutes = require('./follow');
+const testimonialRoutes = require('./testimonial');
 
 // All Routes here
 
@@ -19,5 +20,6 @@ router.use('/product',productRoutes);
 router.use('/cart',cartRoutes);
 router.use('/like',likeRoutes);
 router.use('/follow',followRoutes);
+router.use('/testimonial',testimonialRoutes);
 
 module.exports = router;

@@ -156,13 +156,13 @@ export const getStoreError = (error) => {
 export const getAllStores = () => {
     return async(dispatch) => {
      try{
-        const response = await axios.get(`${baseURL}/store/getAllStores/`);
+        const response = await axios.get(`${baseURL}/store/getAllStores`);
         console.log(response);
         if(response.status!==200){
-            dispatch(getAllStoreError("Something Went Wrong"));
+           await dispatch(getAllStoreError("Something Went Wrong"));
         }
         else{
-            dispatch(getAllStoreSuccess(response.data));
+           await dispatch(getAllStoreSuccess(response.data));
         }
      }
      catch(error){

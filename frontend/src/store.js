@@ -8,13 +8,16 @@ import registerReducer from './reducers/registerReducer';
 import storeReducer from './reducers/storeReducer';
 import productReducer from './reducers/productReducer';
 import cartReducer from './reducers/cartReducer';
+import testimonialReducer from './reducers/testimonialReducer';
+
 const rootReducer = combineReducers({
  user:userReducer,
  login:loginReducer,
  register:registerReducer,
  store:storeReducer,
  product:productReducer,
- cart:cartReducer
+ testimonials:testimonialReducer,
+ cart:cartReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

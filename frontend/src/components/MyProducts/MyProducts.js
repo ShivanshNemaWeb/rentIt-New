@@ -200,9 +200,10 @@ const handleDeleteProduct = () =>{
                    state: {product:{data,store:storeDetails,images:{
                     img1:data.images.img1, img2:data.images.img2,img3:data.images.img3,
                     img4:data.images.img4,img5:data.images.img5
-                   }}} // Add the data you want to pass
+                   },likes:data.likes}} // Add the data you want to pass
                  }}> <li><a href="/details" data-tip="Quick View"><i className="fa fa-search"></i></a></li>
-                 </Link>                       </ul>
+                 </Link>                      
+                 </ul>
                    </div>
                    <div className="productFooter">
                        <div className="productContent">
@@ -251,9 +252,10 @@ const handleDeleteProduct = () =>{
                    state: {product:{data,store:storeDetails,images:{
                     img1:data.images.img1, img2:data.images.img2,img3:data.images.img3,
                     img4:data.images.img4,img5:data.images.img5
-                   }}} // Add the data you want to pass
+                   },likes:data.likes}} // Add the data you want to pass
                  }}> <li><a href="/details" data-tip="Quick View"><i className="fa fa-search"></i></a></li>
-                 </Link>                       </ul>
+                 </Link>                       
+                 </ul>
                    </div>
                    <div className="productFooter">
                        <div className="productContent">

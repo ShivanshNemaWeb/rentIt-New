@@ -73,7 +73,7 @@ const storeReducer = (state = initialState, action) => {
           case 'GET_ALL_STORE_ERROR':
             return{
               ...state,
-              allStores:null,
+              allStores:[],
               error:"Something Went Wrong",
               loading:false
 

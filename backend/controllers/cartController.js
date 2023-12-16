@@ -64,7 +64,7 @@ exports.getItems = async(req,res) => {
     return res.status(200).send(productsWithImages);
     }
     catch(error){
-        return res.status(401).send({message:"Something Went Wrong"});
+        return res.status(401).send({message:error.message});
     }
 }
 

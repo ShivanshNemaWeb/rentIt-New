@@ -7,6 +7,7 @@ import {useHistory} from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import {Modal} from '@material-ui/core';
 import Loader from "../Loader/Loader";
+import Navbar from "../Navbar/Navbar";
 const Login = () => {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -33,8 +34,9 @@ const Login = () => {
     </Modal>
         </>):(<></>)
     }
+            <Navbar/>
+
     <div className="root">
-        
      <div class="wrapper">
         <div class="sct brand"><img src={logo} alt="" style={{width:"200px",height:"70px"}}/></div>
         <div class="sct login">
@@ -47,7 +49,7 @@ const Login = () => {
                             <a href="">Forgot Password?</a>
                     </div> 
                 </div>
-                <input type="submit" name="send" value="Send" onClick={handleLogin}/>
+                <input type="submit" name="send" value="Send" onClick={handleLogin} style={{backgroundColor:"rgba(0, 52, 82,1)"}}/>
                 <p class="text-center">Don't have an account?<br/><i class="fa fa-hand-o-down" aria-hidden="true"></i></p>
                 <div class="social-sign">
                     <Link to='/register'><p className="text-primary" style={{cursor:"pointer"}}>Sign up</p></Link>

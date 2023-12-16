@@ -2,13 +2,19 @@
 import styles from './ProductModal.module.css';
 import lightSlider from 'lightslider/dist/css/lightslider.min.css';
 import $ from 'jquery';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef,useState } from 'react';
 import {useLocation} from 'react-router-dom'
 import Navbar from '../Navbar/Navbar';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import {dislike, like} from '../../actions/likeActions'
 import {useDispatch,useSelector} from 'react-redux'
 import { useHistory } from 'react-router-dom';
+import {
+    Modal,
+    Button
+  } from '@material-ui/core';
+  import {addItem} from '../../actions/cartActions'
+import Loader from '../Loader/Loader';
 const ProductModal = ({isModalOpen,setModalOpen}) => {
     const location = useLocation();
     const {product} = location.state;
@@ -30,8 +36,53 @@ const ProductModal = ({isModalOpen,setModalOpen}) => {
         e.preventDefault();
         dispatch(dislike(productId));
       }
+      const loading = useSelector((state)=>state.product.loading);
+      const [addCartSuccess,setAddCartSuccess] = useState(false);
+      const cartError = useSelector((state)=>state.cart.error);
+
+      const handleAddCart = (e,productId) => {
+        e.preventDefault();
+       dispatch({type:"REGISTER_REQUEST"});
+  
+       setTimeout(()=>{
+        dispatch(addItem(productId,history)); //add to cart function 
+        setAddCartSuccess(true);
+       },1000)
+      }
+  
+     const handleAddCartModalClose = () => {
+      setAddCartSuccess(false)
+     }
+   
     return (<>
          <Navbar/>
+         {
+            loading?(<>
+                <Modal open={loading}>
+        <Loader/>
+    </Modal>
+            </>):(<>
+                {
+      addCartSuccess?(<>
+      <Modal open={addCartSuccess}>
+                <div className={styles.notificationModal}>
+                     <div className={styles.modalContent}>
+                       {
+                        cartError?(<><h4 className='text-danger'>Something Went Wrong ! Try again later</h4></>):(<>
+                        <h4 className='text-success'>Added to the cart successfully</h4>
+                        </>)
+                       }
+                       <div style={{display:"flex",padding:"20px"}}>
+                       <Button className='btn btn-success' onClick={handleAddCartModalClose} style={{backgroundColor:"rgba(0, 52, 82,1)",color:"white"}}>Done</Button>
+                          <Button className='btn btn-success ' style={{backgroundColor:"rgba(0, 52, 82,1)",color:"white"}}>Cart</Button>
+
+                       </div>
+                         
+                     </div>
+                </div>
+    </Modal>
+      </>):(<></>)
+    }
                 <div className='container'>
                      <div className={styles.modalContent}>
                        <div className={styles.productDetails}>
@@ -70,7 +121,7 @@ const ProductModal = ({isModalOpen,setModalOpen}) => {
         </div>
       </div>
     </div>
-            <div className={`mt-2 ${styles["card"]}`}>
+            {/* <div className={`mt-2 ${styles["card"]}`}>
                 <h6>Reviews</h6>
                 <div className="d-flex flex-row">
                     <div className={styles["stars"]}> </div> <span className="ml-1 font-weight-bold" > 400 Likes <i className='fa fa-heart' style={{color:"red"}}></i></span>
@@ -99,7 +150,7 @@ const ProductModal = ({isModalOpen,setModalOpen}) => {
                         <div className={styles["date"]}> <span className={styles["text-muted"]}>2 May</span> </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
         <div className="col-md-7">
             <div className={styles["card"]}>
@@ -109,7 +160,12 @@ const ProductModal = ({isModalOpen,setModalOpen}) => {
                 <div className={styles["about"]}> <span className="font-weight-bold">{product.data.title} </span>
                     <h4 className="font-weight-bold">&#8377; {product.data.price?(product.data.price):(product.data.data.price)}</h4>
                 </div>
-                <div className={styles["buttons"]}> <button className={`btn btn-outline-warning btn-long ${styles["cart"]}`}>Add to Cart</button> 
+                <div className={styles["buttons"]}> 
+                {product.data._id?(<>
+                    <button className={`btn btn-outline-warning btn-long ${styles["cart"]}`} onClick={(e)=>handleAddCart(e,product.data._id)}>Add to Cart</button> 
+                </>):(<>
+                    <button className={`btn btn-outline-warning btn-long ${styles["cart"]}`} onClick={(e)=>handleAddCart(e,product.data.data._id)}>Add to Cart</button>     
+                </>)}
                 <button className={`btn btn-warning btn-long ${styles["buy"]}`}>Buy it Now</button> 
                 <button className={`btn btn-light${styles["wishlist"]}`}> 
                </button> </div>
@@ -131,35 +187,11 @@ const ProductModal = ({isModalOpen,setModalOpen}) => {
                     </Link>
                 </div>
             </div>
-            <div className= {`${styles["card"]} mt-5 p-3`}> <span>Similar items:</span>
+            {/* <div className= {`${styles["card"]} mt-5 p-3`}> <span>Similar items:</span>
                 <div className={`mt-2 d-flex flex-row ${styles["similar-products"]}`}>
-                    {/* <div className="card border p-1" style={{width: "9rem",marginRight: "3px"}}> <img src="https://i.imgur.com/KZpuufK.jpg" className={styles["card-img-top"]} alt="..."/>
-                        <div className="card-body">
-                            <h6 className={styles["card-title"]}>$1,999</h6>
-                        </div>
-                    </div>
-                    <div className="card border p-1" style={{width: "9rem",marginRight: "3px"}}> <img src="https://i.imgur.com/KZpuufK.jpg" className={styles["card-img-top"]} alt="..."/>
-                        <div className="card-body">
-                            <h6 className={styles["card-title"]}>$1,999</h6>
-                        </div>
-                    </div>
-                    <div className="card border p-1" style={{width: "9rem",marginRight: "3px"}}> <img src="https://i.imgur.com/KZpuufK.jpg" className={styles["card-img-top"]} alt="..."/>
-                        <div className="card-body">
-                            <h6 className={styles["card-title"]}>$1,999</h6>
-                        </div>
-                    </div>
-                    <div className="card border p-1" style={{width: "9rem",marginRight: "3px"}}> <img src="https://i.imgur.com/KZpuufK.jpg" className={styles["card-img-top"]} alt="..."/>
-                        <div className="card-body">
-                            <h6 className={styles["card-title"]}>$1,999</h6>
-                        </div>
-                    </div>
-                    <div className="card border p-1" style={{width: "9rem",marginRight: "3px"}}> <img src="https://i.imgur.com/KZpuufK.jpg" className={styles["card-img-top"]} alt="..."/>
-                        <div className="card-body">
-                            <h6 className={styles["card-title"]}>$1,999</h6>
-                        </div>
-                    </div> */}
+                   
                 </div>
-            </div>
+            </div> */}
         </div>
     </div>
 </div>
@@ -167,8 +199,8 @@ const ProductModal = ({isModalOpen,setModalOpen}) => {
                       
                      </div>
                      </div>
-                   
-                
+            </>)
+         }  
         </>)
 }
 

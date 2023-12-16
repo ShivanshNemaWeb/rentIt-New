@@ -14,6 +14,7 @@ import {useEffect } from 'react';
 import {useDispatch,useSelector } from 'react-redux';
 import {getStore,getAllStores} from './actions/storeActions';
 import Cart from './components/Cart/Cart';
+import storeReducer from './reducers/storeReducer';
 function App() {
   const dispatch = useDispatch();
   // const storeDetails = useSelector((state) => state.store.myStoreDetails);
@@ -23,10 +24,10 @@ function App() {
   const allStores = useSelector((state)=>state.store.allStores);
 const storeDetails = useSelector((state)=>state.store.myStoreDetails);
 
-  useEffect(()=>{
-    console.log("Inside useEffect");
-    dispatch(getStore());
- },[dispatch])
+//   useEffect(()=>{
+//     console.log("Inside useEffect");
+//     dispatch(getStore());
+//  },[dispatch])
 
 
 
@@ -68,7 +69,7 @@ const storeDetails = useSelector((state)=>state.store.myStoreDetails);
         />
        <Route
           path="/Stores"
-          render={(props) => <AllStores {...props} stores ={allStores}/>}
+          render={(props) => <AllStores {...props} stores={allStores}/>}
         />      
         <Route path="/storeProfile" component={StoreProfile}/>
       <Route path='/register' component={Register}/>
