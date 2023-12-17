@@ -9,7 +9,7 @@ require('dotenv').config();
 const app = express();
 
 const hostname = process.env.HOSTNAME;
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 
 app.use(corsMiddleware);
 
@@ -27,8 +27,8 @@ connectDb()
   .then(() => {
     console.log('Connected to MongoDB');
     // Start the server
-    server.listen(port, hostname, () => {
-      console.log(`Server running at http://${hostname}:${port}/`);
+    server.listen(port, () => {
+      console.log(`Server running at http:${port}`);
     });
   })
   .catch((err) => {

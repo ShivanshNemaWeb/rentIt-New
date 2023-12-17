@@ -78,7 +78,7 @@ const Stores = () => {
                     <div className="row">
                    
                    {
-                    stores && stores.map((store)=>{
+                    stores && stores.slice(0,3).map((store)=>{
                         return  ( <><div className={styles.card}>
                         <div className={styles["cover-bg"]}>
                             <img src={store.images.storeCover} alt=""/>

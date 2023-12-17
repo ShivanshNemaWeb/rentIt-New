@@ -6,7 +6,7 @@ const Footer = () =>{
     <footer>
   
   <div class={styles.offerInfo}>
-    Rent your Fession Now !!
+    Rent your Fashion Now !!
   </div>  
   
   <div class={styles.footerInfo}>
@@ -23,8 +23,8 @@ const Footer = () =>{
         <li>Party</li>
         <li>Traditional</li>
         <li>Stores</li>
-        <li>About Us</li>
-        <li>Contect</li>
+        <li>About</li>
+        <li>Contact Us</li>
 
       </ul>
     </div>
@@ -44,7 +44,9 @@ const Footer = () =>{
   <div class={styles.footerCopyright}>
     
     <div class={styles.copyright}>
-      Copyright © 2023 RentIt. Powered by RantIt.
+      <p>Copyright © 2023 RentIt. Powered by RantIt.</p>
+      <p>Made by Shivansh Nema</p> 
+      shivanshnema83@gmail.com
     </div>
     
     <div class={styles.social}>

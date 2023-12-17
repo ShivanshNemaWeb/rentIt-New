@@ -16,6 +16,7 @@ const Navbar = () => {
      dispatch(fetchUser(userId));
   },[dispatch])
 
+
     return(<>
      <nav>
     <Link to='/'>
@@ -27,7 +28,7 @@ const Navbar = () => {
       <li>Traditional</li>
      <li>Stores</li>
      <li>about</li>
-      <li>contect us</li>
+      <li>contact us</li>
     </ul>
     
      <ul className={styles.menu_bar} >
@@ -50,5 +51,6 @@ const Navbar = () => {
   </nav>
   
     </>)
+
 }
 export default Navbar
